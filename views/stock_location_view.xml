@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_location_form" model="ir.ui.view">
+        <field name="name">stock.location.form</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[3]" position="inside">
+                <group colspan="4">
+                    <label for="volume_original"/>
+                    <div class="o_row">
+                        <field name="volume_original"/>
+                        <span>m³</span>
+                    </div>
+                    <label for="percent_available"/>
+                    <div class="o_row">
+                        <field name="percent_available"/>
+                        <span>%</span>
+                    </div>
+                    <label for="volume"/>
+                    <div class="o_row">
+                        <field name="volume"/>
+                        <span>m³</span>
+                    </div>
+                    <label for="sum_volume"/>
+                    <div class="o_row">
+                        <field name="sum_volume"/>
+                        <span>m³</span>
+                    </div>
+                    <label for="volume_free"/>
+                    <div class="o_row">
+                        <field name="volume_free"/>
+                        <span>m³</span>
+                    </div>
+                </group>
+                <group string="Users Allow" colspan="4">
+                        <field name="allow_user_ids" widget="many2many_tags"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='comment']" position="after">
+                <field name="stock_quant_ids" domain="[('location_id', 'child_of', active_ids)]" invisible="1">
+                    <tree>
+                        <field name="product_id"/>
+                        <field name="lot_id"/>
+                        <field name="available_quantity"/>
+                        <field name="product_uom_id"/>
+                        <field name="volume_prod"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
